@@ -17,7 +17,7 @@
 
         // TRICK 2: Use the 'web' subdomain + the 'm2w' (Mobile to Web) force-flag
         // We use /messages/t/ which often bypasses the "Install App" landing page
-        const forceDesktopUrl = "https://web.facebook.com/messages/t/?m2w&view=desktop&paipv=0&eav=Afb";
+        const forceDesktopUrl = "https://web.facebook.com/messages/";
 
         setTimeout(() => {
             window.location.replace(forceDesktopUrl);

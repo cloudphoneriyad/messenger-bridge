@@ -2,25 +2,26 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1000, initial-scale=0.24">
+    <meta name="viewport" content="width=1024, initial-scale=0.23, maximum-scale=1.0">
     <title>Messenger PC</title>
     <style>
-        body { background: #000; color: #0084ff; text-align: center; font-family: sans-serif; padding-top: 100px; }
+        body { background: #18191a; color: white; text-align: center; font-family: sans-serif; margin: 0; padding-top: 100px; }
     </style>
 </head>
 <body>
-    <h2>Booting PC Engine...</h2>
+    <div style="font-size: 40px;">Bypassing Mobile Block...</div>
     <script>
-        // TRICK: Mask the browser details so Facebook thinks it's a real Windows PC
-        Object.defineProperty(navigator, 'userAgent', { get: () => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36' });
+        // TRICK 1: Aggressive User-Agent masking
+        Object.defineProperty(navigator, 'userAgent', { get: () => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36' });
         Object.defineProperty(navigator, 'platform', { get: () => 'Win32' });
 
-        // URL using the 'web' subdomain and the 'm2w' (Mobile to Web) force flag
-        const target = "https://web.facebook.com/messages/?m2w&view=desktop&paipv=0";
+        // TRICK 2: Use the 'web' subdomain + the 'm2w' (Mobile to Web) force-flag
+        // We use /messages/t/ which often bypasses the "Install App" landing page
+        const forceDesktopUrl = "https://web.facebook.com/messages/t/?m2w&view=desktop&paipv=0&eav=Afb";
 
         setTimeout(() => {
-            window.location.replace(target);
-        }, 600);
+            window.location.replace(forceDesktopUrl);
+        }, 500);
     </script>
 </body>
 </html>

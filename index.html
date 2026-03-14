@@ -1,37 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1000, initial-scale=0.24">
-    <title>Messenger Desktop Emulator</title>
+    <title>Messenger Desktop Gateway</title>
     <style>
-        body { background: #18191a; color: white; text-align: center; font-family: sans-serif; padding-top: 80px; }
-        .spinner { border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid #0084ff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        body { background:#111; color:#fff; text-align:center; padding:40px; font-family:Arial, sans-serif; }
+        h2 { margin-bottom:30px; }
+        button { 
+            display:block; width:90%; max-width:320px; margin:15px auto; 
+            padding:18px; font-size:18px; background:#1877f2; color:white; 
+            border:none; border-radius:10px; cursor:pointer;
+        }
+        button:hover { background:#166fe5; }
+        .warning { color:#ffcc00; font-size:14px; margin-top:30px; line-height:1.4; }
     </style>
 </head>
 <body>
-    <div class="spinner"></div>
-    <div id="status">Spoofing Desktop Environment...</div>
+    <h2>Daily Messenger Desktop (itel it9310)</h2>
+    <p>Tap any button below → CroxyProxy will load</p>
 
-    <script>
-        // 1. LIAR ENGINE: We spoof the screen size so FB thinks it's 1920x1080
-        Object.defineProperty(window.screen, 'width', { get: () => 1920 });
-        Object.defineProperty(window.screen, 'height', { get: () => 1080 });
-        
-        // 2. TOUCH REMOVAL: Most mobile blocks trigger if 'maxTouchPoints' > 0
-        Object.defineProperty(navigator, 'maxTouchPoints', { get: () => 0 });
-        Object.defineProperty(navigator, 'platform', { get: () => 'Win32' });
-        Object.defineProperty(navigator, 'userAgent', { get: () => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36' });
+    <button onclick="window.location.href='https://www.croxyproxy.com/?url=https%3A%2F%2Fweb.facebook.com%2Fmessages%2Ft%2F1600773677662345'">
+        1. Open My Main Thread (Full Desktop Style)
+    </button>
 
-        // 3. THE BACKDOOR URL: Using the direct 't' (thread) path with desktop flags
-        // This often bypasses the "Mobile Browser" landing page entirely
-        const desktopUrl = "https://web.facebook.com/messages/t/1600773677662345";
+    <button onclick="window.location.href='https://www.croxyproxy.com/?url=https%3A%2F%2Fwww.facebook.com%2Fmessages'">
+        2. Open Full Inbox (Desktop)
+    </button>
 
-        setTimeout(() => {
-            document.getElementById('status').innerText = "Launching PC Interface...";
-            window.location.replace(desktopUrl);
-        }, 1000);
-    </script>
+    <button onclick="window.location.href='https://www.croxyproxy.com/?url=https%3A%2F%2Fmbasic.facebook.com%2Fmessages%2F'">
+        3. Mbasic Version (Light Fallback)
+    </button>
+
+    <button onclick="window.location.href='https://mbasic.facebook.com/messages/t/1600773677662345'">
+        4. Direct Mbasic Thread (No Proxy – Safest & Fastest)
+    </button>
+
+    <div class="warning">
+        <strong>How to use every day:</strong><br>
+        1. Tap button 1 or 2<br>
+        2. On CroxyProxy page: Choose <strong>United States</strong> server + check <strong>Desktop mode</strong><br>
+        3. Click Go & log in with your real account<br>
+        4. Chat normally (full blue interface should appear)<br><br>
+        <strong>Security:</strong> Change your Facebook password every 30 days. Enable 2FA. Never use for other important sites.
+    </div>
 </body>
 </html>

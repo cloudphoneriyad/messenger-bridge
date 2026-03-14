@@ -2,25 +2,46 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1000, initial-scale=0.24">
-    <title>Messenger Desktop</title>
+    <title>Messenger Desktop Gateway</title>
     <style>
-        body { background: #000; color: #0084ff; text-align: center; font-family: sans-serif; padding-top: 100px; }
+        body { background:#111; color:#fff; text-align:center; padding:40px; font-family:Arial, sans-serif; }
+        h2 { margin-bottom:30px; }
+        button { 
+            display:block; width:90%; max-width:320px; margin:15px auto; 
+            padding:18px; font-size:18px; background:#1877f2; color:white; 
+            border:none; border-radius:10px; cursor:pointer;
+        }
+        button:hover { background:#166fe5; }
+        .warning { color:#ffcc00; font-size:14px; margin-top:30px; line-height:1.4; }
     </style>
 </head>
 <body>
-    <h2>Riyad, Enabling Desktop View...</h2>
-    <script>
-        // TRICK 1: Mask the platform so it looks like Windows PC
-        Object.defineProperty(navigator, 'platform', { get: () => 'Win32' });
-        Object.defineProperty(navigator, 'userAgent', { get: () => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' });
+    <h2>Daily Messenger Desktop (itel it9310)</h2>
+    <p>Tap any button below → CroxyProxy will load</p>
 
-        // TRICK 2: Use the Desktop-specific URL with the "Force Web" parameter
-        const desktopUrl = "https://web.facebook.com/messages/?m2w&view=desktop&paipv=0";
+    <button onclick="window.location.href='https://www.croxyproxy.com/?url=https%3A%2F%2Fweb.facebook.com%2Fmessages%2Ft%2F1600773677662345'">
+        1. Open My Main Thread (Full Desktop Style)
+    </button>
 
-        setTimeout(() => {
-            window.location.replace(desktopUrl);
-        }, 500);
-    </script>
+    <button onclick="window.location.href='https://www.croxyproxy.com/?url=https%3A%2F%2Fwww.facebook.com%2Fmessages'">
+        2. Open Full Inbox (Desktop)
+    </button>
+
+    <button onclick="window.location.href='https://www.croxyproxy.com/?url=https%3A%2F%2Fmbasic.facebook.com%2Fmessages%2F'">
+        3. Mbasic Version (Light Fallback)
+    </button>
+
+    <button onclick="window.location.href='https://mbasic.facebook.com/messages/t/1600773677662345'">
+        4. Direct Mbasic Thread (No Proxy – Safest & Fastest)
+    </button>
+
+    <div class="warning">
+        <strong>How to use every day:</strong><br>
+        1. Tap button 1 or 2<br>
+        2. On CroxyProxy page: Choose <strong>United States</strong> server + check <strong>Desktop mode</strong><br>
+        3. Click Go & log in with your real account<br>
+        4. Chat normally (full blue interface should appear)<br><br>
+        <strong>Security:</strong> Change your Facebook password every 30 days. Enable 2FA. Never use for other important sites.
+    </div>
 </body>
 </html>

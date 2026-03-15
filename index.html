@@ -1,19 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Messenger Gateway</title>
+    <meta name="viewport" content="width=1000, initial-scale=0.24">
+    <title>Messenger PC Gateway | Riyad Tech</title>
+    <style>
+        body { background: #18191a; color: #e4e6eb; text-align: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding-top: 15vh; margin: 0; }
+        .loader { border: 5px solid #3a3b3c; border-top: 5px solid #0084ff; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .status { font-size: 1.2rem; font-weight: bold; }
+        .sub { color: #b0b3b8; font-size: 0.9rem; margin-top: 10px; }
+    </style>
 </head>
-<body style="background: #000; color: #fff; text-align: center; padding-top: 50px; font-family: sans-serif;">
-    <p>Connecting to secure gateway...</p>
+<body>
+    <div class="loader"></div>
+    <p class="status">Establishing Encrypted Desktop Session...</p>
+    <p class="sub">Bypassing Meta Device-Detection Firewall</p>
+
     <script>
-        // We use a public proxy URL as a bridge. 
-        // Note: Change the URL if this specific proxy goes down.
-        const proxyUrl = "https://kproxy.com/go.jsp?uri=";
-        const targetUrl = "https://mbasic.facebook.com/messages/";
+        // --- THE "BIG LIES" ENGINE ---
+        // We redefine every property Facebook checks for mobile detection
+        const spoof = (obj, prop, value) => {
+            Object.defineProperty(obj, prop, { get: () => value, configurable: true });
+        };
+
+        // 1. Hardware & Platform
+        spoof(navigator, 'platform', 'Win32');
+        spoof(navigator, 'userAgent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
+        spoof(navigator, 'appVersion', '5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
+        spoof(navigator, 'vendor', 'Google Inc.');
         
-        // This encodes the Facebook link so the cloud server can't block the request
-        window.location.replace(proxyUrl + encodeURIComponent(targetUrl));
+        // 2. Hide Mobile Sensors (CRITICAL)
+        spoof(navigator, 'maxTouchPoints', 0); // Real PCs don't have touch
+        spoof(navigator, 'hardwareConcurrency', 8); // Fake an 8-core CPU
+        spoof(navigator, 'deviceMemory', 16); // Fake 16GB of RAM
+
+        // 3. Fake Screen Resolution
+        spoof(window.screen, 'width', 1920);
+        spoof(window.screen, 'height', 1080);
+
+        // --- THE TARGET ---
+        const threadID = "1600773677662345";
+        const finalUrl = `https://web.facebook.com/messages/t/${threadID}?m2w&view=desktop&paipv=0&eav=Afb`;
+
+        setTimeout(() => {
+            window.location.replace(finalUrl);
+        }, 1200);
     </script>
 </body>
 </html>

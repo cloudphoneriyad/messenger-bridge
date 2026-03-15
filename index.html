@@ -2,35 +2,126 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riyad Tech | Multi-Vector Bridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CloudChat Launcher</title>
     <style>
-        body { background: #000; color: #00ffcc; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
-        h2 { color: #ff003c; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .terminal { border: 1px solid #333; padding: 15px; text-align: left; font-size: 12px; margin-bottom: 20px; color: #aaa; background: #0a0a0a; }
-        .btn { display: block; width: 90%; margin: 15px auto; padding: 15px; background: #111; color: #00ffcc; border: 1px solid #00ffcc; text-decoration: none; font-size: 14px; text-transform: uppercase; font-weight: bold; }
-        .btn:active { background: #00ffcc; color: #000; }
+        :root {
+            --bg-color: #1a1a1a;
+            --icon-bg: #ffffff;
+            --header-blue: #0066ff;
+            --text-color: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Top Navigation Bar */
+        .nav-top {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            background: #222;
+        }
+
+        .nav-icon { fill: #888; width: 24px; height: 24px; }
+        
+        .home-pill {
+            background-color: var(--header-blue);
+            padding: 4px 25px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .home-pill svg { fill: white; width: 20px; height: 20px; }
+
+        /* Icon Grid */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+            flex-grow: 1;
+            align-content: start;
+        }
+
+        .app-item {
+            aspect-ratio: 1 / 1;
+            background-color: var(--icon-bg);
+            border-radius: 22%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: transform 0.1s;
+            overflow: hidden;
+        }
+
+        .app-item:active { transform: scale(0.9); }
+        .app-item svg, .app-item img { width: 70%; height: 70%; }
+
+        /* Specific Icon Colors/Styles */
+        .bg-black { background-color: #000; }
+        .bg-blue { background-color: #1877F2; }
+        .bg-red { background-color: #FF0000; }
+
+        /* Bottom Status Bar */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: #000;
+            border-top: 1px solid #333;
+        }
+
+        .footer-title {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-btn, .back-btn { width: 24px; height: 24px; fill: white; }
     </style>
 </head>
 <body>
-    <h2>META BYPASS TERMINAL</h2>
-    
-    <div class="terminal">
-        > STATUS: Deploying alternate IP routing...<br>
-        > TARGET: Thread 1600773677662345<br>
-        > WAITING FOR COMMAND...
+
+    <div class="nav-top">
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>
+        <div class="home-pill">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        </div>
+        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M16 5l-8 0 0 12 8 0 0-12zm2-2l0 16-12 0 0-16 12 0z"/></svg>
     </div>
 
-    <a href="https://web-facebook-com.translate.goog/messages/t/1600773677662345?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en" class="btn">
-        [1] Execute Google Node
-    </a>
+    <div class="app-grid">
+        <div class="app-item"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Insta"></div>
+        <div class="app-item bg-black"><span style="color:white; font-weight:bold; font-size:12px;">BBC</span></div>
+        <div class="app-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg" alt="MSGR"></div>
+        
+        <div class="app-item bg-black"><span style="font-size:30px;">🌧️</span></div>
+        <div class="app-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YT"></div>
+        <div class="app-item bg-black"><img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok"></div>
+        
+        <div class="app-item bg-blue"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="FB"></div>
+        <div class="app-item bg-black"><span style="font-size:30px;">📻</span></div>
+        <div class="app-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Gemini_language_model_logo.svg" alt="AI"></div>
+    </div>
 
-    <a href="https://mbasic.facebook.com/messages/read/?tid=1600773677662345" class="btn">
-        [2] Execute MBasic Deep-Link
-    </a>
+    <div class="footer">
+        <svg class="menu-btn" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        <div class="footer-title">CloudChat</div>
+        <svg class="back-btn" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    </div>
 
-    <a href="https://touch.facebook.com/messages/t/1600773677662345/?m2w" class="btn">
-        [3] Execute Legacy Touch Port
-    </a>
 </body>
 </html>

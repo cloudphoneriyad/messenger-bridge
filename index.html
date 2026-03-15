@@ -1,28 +1,36 @@
-export default {
-  async fetch(request) {
-    // 1. We define the exact Facebook thread we want to target
-    const targetUrl = "https://web.facebook.com/messages/t/1600773677662345?m2w&view=desktop";
-    
-    // 2. We intercept your phone's request and create a modified clone
-    let newRequest = new Request(targetUrl, {
-      method: request.method,
-      headers: request.headers,
-      redirect: 'manual'
-    });
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1000, initial-scale=0.24">
+    <title>Messenger Desktop | Riyad Tech</title>
+</head>
+<body style="background: #18191a; color: white; text-align: center; font-family: sans-serif; padding-top: 100px;">
+    <h2>Bypassing Device Detection...</h2>
+    <script>
+        // THE "BIG LIES" ENGINE
+        const spoof = (obj, prop, value) => {
+            Object.defineProperty(obj, prop, { get: () => value, configurable: true });
+        };
 
-    // 3. THE KILL SHOT: We rewrite the Network Headers BEFORE Facebook sees them
-    newRequest.headers.set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
-    newRequest.headers.set('Sec-CH-UA-Platform', '"Windows"');
-    newRequest.headers.set('Sec-CH-UA-Mobile', '?0');
-    newRequest.headers.delete('X-Forwarded-For'); // Hides the CloudMosa proxy IP
+        // 1. Hide the phone identity
+        spoof(navigator, 'platform', 'Win32');
+        spoof(navigator, 'userAgent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
+        
+        // 2. Hide "Touch" (This is the #1 reason they block you)
+        spoof(navigator, 'maxTouchPoints', 0);
+        
+        // 3. Fake high-end hardware (Facebook thinks you're on a powerful PC)
+        spoof(navigator, 'hardwareConcurrency', 8);
+        spoof(navigator, 'deviceMemory', 16);
 
-    // 4. Send the disguised request to Meta
-    let response = await fetch(newRequest);
+        // 4. The "Force-Entry" URL with all 2026 desktop flags
+        const threadID = "1600773677662345";
+        const target = "https://www.facebook.com/messages/t/" + threadID + "/?m2w&view=desktop&paipv=0&eav=Afb";
 
-    // 5. Send Meta's response back to your phone
-    let newResponse = new Response(response.body, response);
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
-    
-    return newResponse;
-  }
-};
+        setTimeout(() => {
+            window.location.replace(target);
+        }, 1000);
+    </script>
+</body>
+</html>

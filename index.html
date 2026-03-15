@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1000, initial-scale=0.24">
-    <title>Messenger Desktop | Riyad Tech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riyad Tech | Multi-Vector Bridge</title>
+    <style>
+        body { background: #000; color: #00ffcc; font-family: monospace; text-align: center; padding: 20px; margin: 0; }
+        h2 { color: #ff003c; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .terminal { border: 1px solid #333; padding: 15px; text-align: left; font-size: 12px; margin-bottom: 20px; color: #aaa; background: #0a0a0a; }
+        .btn { display: block; width: 90%; margin: 15px auto; padding: 15px; background: #111; color: #00ffcc; border: 1px solid #00ffcc; text-decoration: none; font-size: 14px; text-transform: uppercase; font-weight: bold; }
+        .btn:active { background: #00ffcc; color: #000; }
+    </style>
 </head>
-<body style="background: #18191a; color: white; text-align: center; font-family: sans-serif; padding-top: 100px;">
-    <h2>Bypassing Device Detection...</h2>
-    <script>
-        // THE "BIG LIES" ENGINE
-        const spoof = (obj, prop, value) => {
-            Object.defineProperty(obj, prop, { get: () => value, configurable: true });
-        };
+<body>
+    <h2>META BYPASS TERMINAL</h2>
+    
+    <div class="terminal">
+        > STATUS: Deploying alternate IP routing...<br>
+        > TARGET: Thread 1600773677662345<br>
+        > WAITING FOR COMMAND...
+    </div>
 
-        // 1. Hide the phone identity
-        spoof(navigator, 'platform', 'Win32');
-        spoof(navigator, 'userAgent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
-        
-        // 2. Hide "Touch" (This is the #1 reason they block you)
-        spoof(navigator, 'maxTouchPoints', 0);
-        
-        // 3. Fake high-end hardware (Facebook thinks you're on a powerful PC)
-        spoof(navigator, 'hardwareConcurrency', 8);
-        spoof(navigator, 'deviceMemory', 16);
+    <a href="https://web-facebook-com.translate.goog/messages/t/1600773677662345?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en" class="btn">
+        [1] Execute Google Node
+    </a>
 
-        // 4. The "Force-Entry" URL with all 2026 desktop flags
-        const threadID = "1600773677662345";
-        const target = "https://www.facebook.com/messages/t/" + threadID + "/?m2w&view=desktop&paipv=0&eav=Afb";
+    <a href="https://mbasic.facebook.com/messages/read/?tid=1600773677662345" class="btn">
+        [2] Execute MBasic Deep-Link
+    </a>
 
-        setTimeout(() => {
-            window.location.replace(target);
-        }, 1000);
-    </script>
+    <a href="https://touch.facebook.com/messages/t/1600773677662345/?m2w" class="btn">
+        [3] Execute Legacy Touch Port
+    </a>
 </body>
 </html>

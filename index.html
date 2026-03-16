@@ -3,154 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=240, height=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CloudChat Launcher</title>
+    <title>Messenger | Maintenance</title>
     <style>
         :root {
-            --bg-black: #000000;
-            --panel-grey: #1c1c1e;
-            --active-blue: #007aff;
-            --text-white: #ffffff;
-            --icon-round: 12px;
+            --bg-color: #0f172a; /* Material Dark Slate */
+            --accent-glow: #00ffcc; /* Neon Tech Vibe */
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { 
-            margin: 0; padding: 0; background: var(--bg-black); color: var(--text-white);
-            font-family: sans-serif; width: 240px; height: 320px; overflow: hidden;
+        body {
+            margin: 0; padding: 0;
+            width: 240px; height: 320px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; overflow: hidden;
+            box-sizing: border-box; padding: 20px;
         }
 
-        /* Top Nav Bar */
-        .header-nav {
-            display: flex; justify-content: space-around; align-items: center;
-            height: 38px; background: var(--panel-grey); border-bottom: 1px solid #333;
-        }
-        .nav-item { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; opacity: 0.4; transition: 0.2s; }
-        .nav-item.active { opacity: 1; border-bottom: 2px solid var(--active-blue); }
-        .nav-item svg { width: 20px; height: 20px; fill: white; }
-
-        /* Main View Container */
-        #viewport { flex: 1; overflow-y: auto; padding: 10px; }
-        .page { display: none; }
-        .page.active { display: block; }
-
-        /* The App Grid */
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; justify-items: center; }
-        
-        .app-card { 
-            display: flex; flex-direction: column; align-items: center; 
-            text-decoration: none; width: 64px;
-        }
-        
-        .icon-container {
-            width: 58px; height: 58px; background: white; border-radius: var(--icon-round);
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.5); margin-bottom: 4px; overflow: hidden;
+        /* Glowing Construction Icon */
+        .icon-circle {
+            width: 64px; height: 64px;
+            background: rgba(0, 255, 204, 0.1);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+            animation: pulseGlow 2s infinite;
         }
 
-        .icon-container img { width: 42px; height: 42px; object-fit: contain; }
-        .bg-fb { background: #1877F2; }
-        .bg-dark { background: #121212; }
+        .icon-circle svg { width: 32px; height: 32px; fill: var(--accent-glow); }
 
-        /* Footer Bar */
-        .footer {
-            height: 42px; background: var(--bg-black); border-top: 1px solid #222;
-            display: flex; justify-content: space-between; align-items: center; padding: 0 12px;
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 255, 204, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0); }
         }
-        .footer b { font-size: 14px; letter-spacing: 1px; color: #fff; }
-        .foot-icon { width: 22px; height: 22px; fill: white; }
 
-        /* App Label */
-        .app-label { font-size: 10px; color: #aaa; text-align: center; white-space: nowrap; }
+        /* Typography */
+        h1 {
+            font-size: 18px; margin: 0 0 8px 0;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 13px; color: var(--text-muted);
+            margin: 0 0 25px 0; line-height: 1.5;
+        }
+
+        .highlight { color: var(--accent-glow); font-weight: bold; }
+
+        /* Expressive Loading Bar */
+        .loading-track {
+            width: 160px; height: 4px;
+            background: #1e293b; border-radius: 4px;
+            overflow: hidden; margin-bottom: 30px;
+        }
+
+        .loading-bar {
+            width: 40%; height: 100%;
+            background: var(--accent-glow);
+            border-radius: 4px;
+            animation: slide 1.5s infinite ease-in-out alternate;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(250%); }
+        }
+
+        /* Footer Branding */
+        .branding {
+            position: absolute; bottom: 15px;
+            font-size: 10px; color: #475569;
+            text-transform: uppercase; letter-spacing: 1.5px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header-nav">
-        <div class="nav-item" id="btn-cat" onclick="showPage('categories')">
-            <svg viewBox="0 0 24 24"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>
-        </div>
-        <div class="nav-item active" id="btn-home" onclick="showPage('home')">
-            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-        </div>
-        <div class="nav-item" id="btn-pin" onclick="showPage('pins')">
-            <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
-        </div>
+    <div class="icon-circle">
+        <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 C10.5,21.59,10.7,21.76,10.94,21.76h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
     </div>
 
-    <div id="viewport">
-        
-        <div id="categories" class="page">
-            <p style="text-align:center; font-size:12px; margin-top:50px;">CATEGORIES LOADING...</p>
-        </div>
+    <h1>System Offline</h1>
+    <p>Messenger is currently in construction with <span class="highlight">Riyad</span>.</p>
 
-        <div id="home" class="page active">
-            <div class="grid">
-                <a href="https://www.instagram.com" class="app-card">
-                    <div class="icon-container"><img src="https://img.icons8.com/color/96/instagram-new.png"></div>
-                    <span class="app-label">Instagram</span>
-                </a>
-                <a href="https://www.bbc.com" class="app-card">
-                    <div class="icon-container bg-dark"><b style="color:white; font-size:14px;">BBC</b></div>
-                    <span class="app-label">BBC News</span>
-                </a>
-                <a href="https://m.facebook.com/messages/" class="app-card">
-                    <div class="icon-container"><img src="https://img.icons8.com/color/96/messenger.png"></div>
-                    <span class="app-label">Messenger</span>
-                </a>
-
-                <a href="https://www.accuweather.com" class="app-card">
-                    <div class="icon-container bg-dark"><span style="font-size:30px;">🌧️</span></div>
-                    <span class="app-label">Weather</span>
-                </a>
-                <a href="https://m.youtube.com" class="app-card">
-                    <div class="icon-container"><img src="https://img.icons8.com/color/96/youtube-play.png"></div>
-                    <span class="app-label">YouTube</span>
-                </a>
-                <a href="https://www.tiktok.com" class="app-card">
-                    <div class="icon-container bg-dark"><img src="https://img.icons8.com/color/96/tiktok.png"></div>
-                    <span class="app-label">TikTok</span>
-                </a>
-
-                <a href="https://m.facebook.com" class="app-card">
-                    <div class="icon-container bg-fb"><img src="https://img.icons8.com/ios-filled/100/ffffff/facebook-new.png"></div>
-                    <span class="app-label">Facebook</span>
-                </a>
-                <a href="https://www.radio.net" class="app-card">
-                    <div class="icon-container bg-dark"><span style="font-size:30px;">📻</span></div>
-                    <span class="app-label">Radio</span>
-                </a>
-                <a href="https://gemini.google.com" class="app-card">
-                    <div class="icon-container"><img src="https://img.icons8.com/color/96/google-gemini.png"></div>
-                    <span class="app-label">Gemini AI</span>
-                </a>
-            </div>
-        </div>
-
-        <div id="pins" class="page">
-             <p style="text-align:center; font-size:12px; margin-top:50px;">PINNED APPS EMPTY</p>
-        </div>
-
+    <div class="loading-track">
+        <div class="loading-bar"></div>
     </div>
 
-    <div class="footer">
-        <svg class="foot-icon" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-        <a href="https://chat.cloudphone.tech" style="text-decoration:none;"><b>CLOUD CHAT</b></a>
-        <svg class="foot-icon" onclick="window.history.back()" viewBox="0 0 24 24"><path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"/></svg>
-    </div>
+    <div class="branding">Powered by <span class="highlight">Riyad Tech</span></div>
 
-    <script>
-        function showPage(pageId) {
-            // Switch Views
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-
-            // Switch Nav Highlight
-            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-            if(pageId === 'categories') document.getElementById('btn-cat').classList.add('active');
-            if(pageId === 'home') document.getElementById('btn-home').classList.add('active');
-            if(pageId === 'pins') document.getElementById('btn-pin').classList.add('active');
-        }
-    </script>
 </body>
 </html>
